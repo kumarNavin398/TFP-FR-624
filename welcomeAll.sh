@@ -1,2 +1,2 @@
 #!/bin/bash
-echo welcome All
+echo "welcome All"
