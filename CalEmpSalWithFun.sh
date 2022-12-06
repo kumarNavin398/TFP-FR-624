@@ -1,21 +1,29 @@
 #!/bin/bash -x
-function calculateWorkingHour () {
-case $1 in
-0)
- 	workingHour=0;
-	;;
-1)
-     workingHours=8;
-	;;
-2)
-	workingHours=4;
-	;;
-	esac;
-	echo $workingHour;
-}
-perHourSalaru=20;
+perHourSalary=20;
+workingHour=0;
 totalSalary=0;
-totalWorkingHours=0;
-day=1
 
-while [[ -le 20 && $totalWorkingHour -It 40 ]]
+for ((day=1; day<=20 ;day++))
+do
+	isPresent=$((RANDOM%3));
+	case $isPresent in
+		0)
+		#echo "Employee is absent";
+		workingHour=0;
+		;;
+
+		1)
+		#echo "Employee is present";
+		workingHour=8;
+		;;
+
+		2)
+		#echo "Employee is working as part time";
+		workingHour=4;
+		;;
+	esac
+	salary=$(($perHourSalary * $workingHour));
+	totalSalary=$(($totalSalary + $salary));
+done
+
+echo "Employee has earned $totalSalary $ in a month";
